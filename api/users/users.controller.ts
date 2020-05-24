@@ -1,5 +1,6 @@
 import { User } from './users.model.ts';
 import db from '../../db/database.ts';
+import { Request, Response } from "https://deno.land/x/oak/mod.ts";
 
 const client = db.getDatabase;
 const users = client.collection("users");
