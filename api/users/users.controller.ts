@@ -28,10 +28,8 @@ const getUsers = async ({ response }: { response: any }) => {
 };
 
 const getUser = async ({ params, response }: { params: any, response: any }) => {
-    console.log(params);
     const userId = params.id;
-    try {
-        const user = await users.findOne({ _id: { "$oid": userId } });
+        const user = await users.findOne({ id : userId });
         if (user) {
             response.status = 200;
             response.body = {
@@ -45,14 +43,11 @@ const getUser = async ({ params, response }: { params: any, response: any }) => 
                 msg: "User Not Found"
             }
         }
-    } catch (e) {
-        response.body = { msg: e };
-    }
 }
 
 const deleteUser = async ({ params, response }: { params: any, response: any }) => {
     const userId = params.id;
-    const deletedUser = await users.deleteOne({ _id: { "$oid": userId } });
+    const deletedUser = await users.deleteOne({ id: userId });
     if (deletedUser) {
         response.status = 204;
         response.body = {
