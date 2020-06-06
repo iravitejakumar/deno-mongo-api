@@ -32,7 +32,7 @@ Compared to Node.js, Deno provides by default a more secure protection when you 
 👤 **Ravi Teja Kumar Isetty**
 
 * Twitter: [@iravitejakumar](https://twitter.com/iravitejakumar)
-* Github: [@dj0nny](https://github.com/iravitejakumar)
+* Github: [@iravitejakumar](https://github.com/iravitejakumar)
 
 ## Built with :heart: using
 * [Deno](https://deno.land/) - _A secure runtime for JavaScript and TypeScript_
