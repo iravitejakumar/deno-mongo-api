@@ -29,20 +29,34 @@ const getUsers = async ({ response }: { response: any }) => {
 
 const getUser = async ({ params, response }: { params: any, response: any }) => {
     const userId = params.id;
-        const user = await users.findOne({ id : userId });
-        if (user) {
-            response.status = 200;
-            response.body = {
-                success: true,
-                data: user
-            }
-        } else {
-            response.status = 400;
-            response.body = {
-                success: false,
-                msg: "User Not Found"
-            }
+    const user = await users.findOne({ id: userId });
+    if (user) {
+        response.status = 200;
+        response.body = {
+            success: true,
+            data: user
         }
+    } else {
+        response.status = 400;
+        response.body = {
+            success: false,
+            msg: "User Not Found"
+        }
+    }
+}
+
+
+const updateUser = async ({ params, request, response }: { params: any, request: any, response: any }) => {
+    const userId = params.id;
+    const body = await request.body();
+    const { matchedCount } = await users.updateOne({ id: userId }, { $set: new User(body.value) })
+    if (matchedCount) {
+        response.status = 201;
+        response.body = {
+            success: true,
+            message: 'User updated'
+        }
+    }
 }
 
 const deleteUser = async ({ params, response }: { params: any, response: any }) => {
@@ -61,6 +75,7 @@ export default {
     createUser,
     getUser,
     getUsers,
-    deleteUser
+    deleteUser,
+    updateUser
 };
 
